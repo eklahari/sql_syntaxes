@@ -1,0 +1,295 @@
+
+### **Introduction to SQL**
+
+#### 1. **What is SQL?**
+- Introduction to SQL
+- SQL Terminology
+- Basic SQL Syntax
+
+---
+
+### **1. SQL Basics**
+
+#### 1.1 **SELECT Statement**
+- **Syntax:**
+  ```sql
+  SELECT column1, column2 FROM table_name;
+  ```
+- **Example:**
+  ```sql
+  SELECT name, salary FROM employees;
+  ```
+
+#### 1.2 **WHERE Clause**
+- **Syntax:**
+  ```sql
+  SELECT column1, column2 FROM table_name WHERE condition;
+  ```
+- **Example:**
+  ```sql
+  SELECT name, salary FROM employees WHERE salary > 50000;
+  ```
+
+---
+
+### **2. Filtering and Sorting**
+
+#### 2.1 **ORDER BY Clause**
+- **Syntax:**
+  ```sql
+  SELECT column1, column2 FROM table_name ORDER BY column1 [ASC|DESC];
+  ```
+- **Example:**
+  ```sql
+  SELECT name, salary FROM employees ORDER BY salary DESC;
+  ```
+
+#### 2.2 **DISTINCT Keyword**
+- **Syntax:**
+  ```sql
+  SELECT DISTINCT column1 FROM table_name;
+  ```
+- **Example:**
+  ```sql
+  SELECT DISTINCT department FROM employees;
+  ```
+
+---
+
+### **3. Aggregate Functions**
+
+#### 3.1 **COUNT, SUM, AVG, MAX, MIN**
+- **Syntax:**
+  ```sql
+  SELECT COUNT(column1), SUM(column1), AVG(column1), MAX(column1), MIN(column1) FROM table_name;
+  ```
+- **Example:**
+  ```sql
+  SELECT COUNT(id), AVG(salary), MAX(salary) FROM employees;
+  ```
+
+---
+
+### **4. Data Manipulation**
+
+#### 4.1 **INSERT INTO Statement**
+- **Syntax:**
+  ```sql
+  INSERT INTO table_name (column1, column2) VALUES (value1, value2);
+  ```
+- **Example:**
+  ```sql
+  INSERT INTO employees (name, salary) VALUES ('John Doe', 60000);
+  ```
+
+#### 4.2 **UPDATE Statement**
+- **Syntax:**
+  ```sql
+  UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
+  ```
+- **Example:**
+  ```sql
+  UPDATE employees SET salary = 65000 WHERE name = 'John Doe';
+  ```
+
+#### 4.3 **DELETE Statement**
+- **Syntax:**
+  ```sql
+  DELETE FROM table_name WHERE condition;
+  ```
+- **Example:**
+  ```sql
+  DELETE FROM employees WHERE name = 'John Doe';
+  ```
+
+---
+
+### **5. Advanced Queries**
+
+#### 5.1 **JOIN Operations**
+- **INNER JOIN:**
+  ```sql
+  SELECT columns FROM table1 INNER JOIN table2 ON table1.common_column = table2.common_column;
+  ```
+- **LEFT JOIN:**
+  ```sql
+  SELECT columns FROM table1 LEFT JOIN table2 ON table1.common_column = table2.common_column;
+  ```
+- **RIGHT JOIN:**
+  ```sql
+  SELECT columns FROM table1 RIGHT JOIN table2 ON table1.common_column = table2.common_column;
+  ```
+- **FULL JOIN:**
+  ```sql
+  SELECT columns FROM table1 FULL JOIN table2 ON table1.common_column = table2.common_column;
+  ```
+
+#### 5.2 **Subqueries**
+- **Syntax:**
+  ```sql
+  SELECT column1 FROM table_name WHERE column2 = (SELECT column2 FROM table_name WHERE condition);
+  ```
+- **Example:**
+  ```sql
+  SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+  ```
+
+---
+
+### **6. Data Definition**
+
+#### 6.1 **CREATE TABLE Statement**
+- **Syntax:**
+  ```sql
+  CREATE TABLE table_name (
+      column1 datatype constraints,
+      column2 datatype constraints,
+      ...
+  );
+  ```
+- **Example:**
+  ```sql
+  CREATE TABLE employees (
+      id INT PRIMARY KEY,
+      name VARCHAR(100),
+      salary DECIMAL(10, 2)
+  );
+  ```
+
+#### 6.2 **ALTER TABLE Statement**
+- **Syntax:**
+  ```sql
+  ALTER TABLE table_name ADD column_name datatype;
+  ALTER TABLE table_name DROP COLUMN column_name;
+  ALTER TABLE table_name MODIFY COLUMN column_name datatype;
+  ```
+- **Example:**
+  ```sql
+  ALTER TABLE employees ADD department VARCHAR(50);
+  ALTER TABLE employees DROP COLUMN department;
+  ALTER TABLE employees MODIFY COLUMN salary DECIMAL(12, 2);
+  ```
+
+#### 6.3 **DROP TABLE Statement**
+- **Syntax:**
+  ```sql
+  DROP TABLE table_name;
+  ```
+- **Example:**
+  ```sql
+  DROP TABLE employees;
+  ```
+
+---
+
+### **7. Constraints and Indexes**
+
+#### 7.1 **PRIMARY KEY**
+- **Syntax:**
+  ```sql
+  column_name datatype PRIMARY KEY;
+  ```
+
+#### 7.2 **FOREIGN KEY**
+- **Syntax:**
+  ```sql
+  FOREIGN KEY (column_name) REFERENCES other_table(column_name);
+  ```
+
+#### 7.3 **UNIQUE Constraint**
+- **Syntax:**
+  ```sql
+  column_name datatype UNIQUE;
+  ```
+
+#### 7.4 **INDEX**
+- **Syntax:**
+  ```sql
+  CREATE INDEX index_name ON table_name (column_name);
+  ```
+
+---
+
+### **8. Transactions**
+
+#### 8.1 **COMMIT and ROLLBACK**
+- **COMMIT:**
+  ```sql
+  COMMIT;
+  ```
+- **ROLLBACK:**
+  ```sql
+  ROLLBACK;
+  ```
+
+#### 8.2 **SAVEPOINT**
+- **Syntax:**
+  ```sql
+  SAVEPOINT savepoint_name;
+  ```
+
+---
+
+### **9. User and Security**
+
+#### 9.1 **CREATE USER**
+- **Syntax:**
+  ```sql
+  CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+  ```
+
+#### 9.2 **GRANT and REVOKE**
+- **GRANT:**
+  ```sql
+  GRANT privilege ON database.table TO 'username'@'host';
+  ```
+- **REVOKE:**
+  ```sql
+  REVOKE privilege ON database.table FROM 'username'@'host';
+  ```
+
+---
+
+### **10. Views and Stored Procedures**
+
+#### 10.1 **CREATE VIEW**
+- **Syntax:**
+  ```sql
+  CREATE VIEW view_name AS SELECT column1, column2 FROM table_name WHERE condition;
+  ```
+
+#### 10.2 **CREATE PROCEDURE**
+- **Syntax:**
+  ```sql
+  CREATE PROCEDURE procedure_name AS
+  BEGIN
+      SQL statements;
+  END;
+  ```
+
+---
+
+### **11. Additional Topics**
+
+#### 11.1 **UNION and UNION ALL**
+- **UNION:**
+  ```sql
+  SELECT column1 FROM table1 UNION SELECT column1 FROM table2;
+  ```
+- **UNION ALL:**
+  ```sql
+  SELECT column1 FROM table1 UNION ALL SELECT column1 FROM table2;
+  ```
+
+#### 11.2 **CASE Statement**
+- **Syntax:**
+  ```sql
+  SELECT column1,
+      CASE
+          WHEN condition THEN result
+          ELSE alternative_result
+      END AS alias_name
+  FROM table_name;
+  ```
+
+---
